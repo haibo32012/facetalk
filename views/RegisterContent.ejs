@@ -1,0 +1,20 @@
+<div>
+	<ul class="pages">
+	<li><span id='name'><%= user.name %></span></li>
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <div>
+      	<video id="campreview" width="240px" height="150px" autoplay=true ></video>
+      	<input class="inputMessage" placeholder="Type here..."/>
+      </div>
+    </li>
+  	</ul>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="javascripts/main.js"></script>
+  <script src="javascripts/whammy.js"></script>
+
+
+</div>
