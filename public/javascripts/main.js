@@ -102,13 +102,13 @@ $(function() {
   var $window = $(window);
   //var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
-  var $inputMessage = $('.inputMessage'); // Input message input box
+  var $inputMessage = $('#inputMessage'); // Input message input box
 
   //var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username;
+  var username=$('#name').text();
   var connected = false;
   var typing = false;
   var lastTypingTime;
@@ -144,7 +144,8 @@ $(function() {
 
   // Sends a chat message
   $currentInput = $inputMessage.focus();
-  
+  socket.emit('add user', username);
+
   function sendMessage (output) {
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message

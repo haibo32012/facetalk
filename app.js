@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var uuid = require('node-uuid');
@@ -118,7 +119,7 @@ io.on('connection', function (socket) {
     });
     socket.broadcast.emit('new message', {
         username: socket.username,
-        video: fileName,
+        video: "video/" + fileName,
         message: data.message
       });
   });
@@ -127,12 +128,11 @@ io.on('connection', function (socket) {
 
 
   // when the client emits 'add user', this listens and executes
-  //socket.on('add user', function (username) {
+  socket.on('add user', function (username) {
     // we store the username in the socket session for this client
-    socket.username = "hello";
+    socket.username = username;
     // add the client's username to the global list
-    var i=0;
-    usernames[i++] = "hello";
+    usernames[username] = username;
     ++numUsers;
     addedUser = true;
     socket.emit('login', {
@@ -143,7 +143,7 @@ io.on('connection', function (socket) {
       username: socket.username,
       numUsers: numUsers
     });
-  //});
+  });
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function () {
