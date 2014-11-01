@@ -148,6 +148,7 @@ $(function() {
 
   function sendMessage (output) {
     var message = $inputMessage.val();
+
     // Prevent markup from being injected into the message
     message = cleanInput(message);
 
@@ -157,7 +158,7 @@ $(function() {
     //capture video and message text
     
     // if there is a non-empty message and a socket connection
-     //$inputMessage.val('');
+     $inputMessage.val('');
       //addChatMessage({
       //  username: username,
       //  video: output,
@@ -176,14 +177,16 @@ $(function() {
 
     var $usernameDiv = $('<span class="username"/>')
       .text(username)
-      .css('color', getUsernameColor(username));
+      .css('color', getUsernameColor(username))
+      .css('margin-left',100);
 
     // video display
     var $captureVideoDiv = $('<video class="videoCapture" width="240px" height="150px" autoplay="true" loop/>')
         .attr('src',window.URL.createObjectURL(output));
 
     var $messageBodyDiv = $('<span class="messageBody"/>')
-      .text(message);
+      .text(message)
+      .css('margin-left',10);
 
     var $timeDiv = $('<time class="messageTime"/>')
       .text(unixtime.toLocaleTimeString())
@@ -219,14 +222,16 @@ $(function() {
 
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
-      .css('color', getUsernameColor(data.username));
+      .css('color', getUsernameColor(data.username))
+      .css('margin-left',100);
 
     // video display
     var $captureVideoDiv = $('<video class="videoCapture" width="240px" height="150px" autoplay="true" loop/>')
         .attr('src',data.video);
 
     var $messageBodyDiv = $('<span class="messageBody"/>')
-      .text(data.message);
+      .text(data.message)
+      .css('margin-left',10);
 
     var $timeDiv = $('<time class="messageTime"/>')
       .text(unixtime.toLocaleTimeString())
@@ -340,6 +345,7 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
+      alert(username);
       if (username) {
         Frame();
         socket.emit('stop typing');
@@ -353,6 +359,21 @@ $(function() {
   $inputMessage.on('input', function() {
     updateTyping();
   });
+
+  // Room Create Operation
+  $('#roomModal').on('shown', function(e) {
+    e.preventDefault();
+    $('#createRoomName').focus();
+  });
+
+  $('#createRoomBtn').click(function() {
+    var roomName = $('#createRoomName').val();
+    socket.emit("createRoom", roomName);
+  });
+
+
+
+
 
   // Click events
 

@@ -104,8 +104,8 @@ var currentRoom = {};
 
 io.on('connection', function (socket) {
   //socket.join('home');
-  socket.on('rooms',function() {
-    //socket.emit('rooms',io.sockets.manager.rooms);
+  socket.on('createRoom',function(name) {
+    console.log(name);
   });
   
   var addedUser = false;
