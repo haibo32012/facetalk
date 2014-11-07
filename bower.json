@@ -1,0 +1,19 @@
+{
+  "name": "chat-20",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "~3.3.0",
+    "font-awesome": "~4.2.0",
+    "typeahead.js": "~0.10.5"
+  },
+  "directory": "components",
+  "homepage": "https://github.com/tamaspiros/advanced-chat",
+  "authors": [
+    "Tamas Piros <me@tamas.io>"
+  ],
+  "main": "server.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "free"
+}
